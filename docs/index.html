@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Studio - Convert Images to ASCII Art</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6750A4;
+            --primary-light: #9A82DB;
+            --secondary: #03DAC6;
+            --accent: #39FF14;
+            --bg-dark: #0D0D0D;
+            --bg-card: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0A0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at top, rgba(103, 80, 164, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(57, 255, 20, 0.1) 0%, transparent 40%),
+                var(--bg-dark);
+            padding: 40px 20px;
+        }
+
+        .logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* ASCII Preview */
+        .ascii-preview {
+            background: #000;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            overflow: auto;
+            max-width: 100%;
+            border: 1px solid #333;
+        }
+
+        .ascii-preview pre {
+            font-family: 'Fira Code', monospace;
+            font-size: 8px;
+            line-height: 1;
+            color: var(--accent);
+            white-space: pre;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(103, 80, 164, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(57, 255, 20, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--bg-card);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-dark);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Platforms Section */
+        .platforms {
+            padding: 80px 0;
+        }
+
+        .platforms h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            border-color: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .platform-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .platform-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .platform-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Color Palettes */
+        .palettes {
+            padding: 80px 0;
+            background: var(--bg-card);
+        }
+
+        .palettes h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .palette-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .palette-item {
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: default;
+            transition: transform 0.2s ease;
+        }
+
+        .palette-item:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .logo {
+                font-size: 32px;
+            }
+            .ascii-preview pre {
+                font-size: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="logo">
+   .-.     .-.     .-.     .-.     .-.     .-.     .-.     .-.     .-.
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+`-'   `-'   `-'   `-'   `-'   `-'   `-'   `-'   `-'   `-'   `-'   `-'   `-'
+            </div>
+            <h1>ASCII Art Studio</h1>
+            <p>Convert images to beautiful ASCII art and generate stunning text banners. Available on all platforms.</p>
+
+            <div class="cta-buttons">
+                <a href="https://github.com/HiTechTN/ascii_art_studio/releases" class="btn btn-primary">
+                    📥 Download App
+                </a>
+                <a href="https://github.com/HiTechTN/ascii_art_studio" class="btn btn-secondary">
+                    ⭐ Star on GitHub
+                </a>
+            </div>
+
+            <div class="ascii-preview">
+                <pre>
+    ██████╗ ███████╗███████╗██╗     ██╗███╗   ██╗███████╗
+    ██╔══██╗██╔════╝██╔════╝██║     ██║████╗  ██║██╔════╝
+    ██║  ██║█████╗  █████╗  ██║     ██║██╔██╗ ██║█████╗  
+    ██║  ██║██╔══╝  ██╔══╝  ██║     ██║██║╚██╗██║██╔══╝  
+    ██████╔╝███████╗███████╗███████╗██║██║ ╚████║███████╗
+    ╚═════╝ ╚══════╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>✨ Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Image to ASCII</h3>
+                    <p>Convert any image to ASCII art with adjustable resolution and character sets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Text Generator</h3>
+                    <p>Create stunning ASCII text banners with 7 different font styles.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>10 Color Palettes</h3>
+                    <p>Choose from 10 beautiful color schemes including Neon Green, Amber, Cyan, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📤</div>
+                    <h3>Export Options</h3>
+                    <p>Save as TXT, HTML (colored), or copy directly to clipboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Dark/Light Theme</h3>
+                    <p>Automatic theme support based on your system preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Cross Platform</h3>
+                    <p>Works on Android, iOS, Web, Windows, macOS, and Linux.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="platforms">
+        <div class="container">
+            <h2>📦 Available Platforms</h2>
+            <div class="platforms-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">🤖</div>
+                    <h3>Android</h3>
+                    <p>APK Available</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🍎</div>
+                    <h3>iOS</h3>
+                    <p>Build from source</p>
+                </div>
+                <div class="platform-card">
+                    <div class="planet-icon">🌐</div>
+                    <h3>Web</h3>
+                    <p>GitHub Pages</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🪟</div>
+                    <h3>Windows</h3>
+                    <p>Build from source</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🐧</div>
+                    <h3>Linux</h3>
+                    <p>Build from source</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">💻</div>
+                    <h3>macOS</h3>
+                    <p>Build from source</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="palettes">
+        <div class="container">
+            <h2>🎨 Color Palettes</h2>
+            <div class="palette-grid">
+                <div class="palette-item" style="background: #39FF14; color: #000;">Neon Green</div>
+                <div class="palette-item" style="background: #FFBF00; color: #000;">Amber</div>
+                <div class="palette-item" style="background: #00FFFF; color: #000;">Cyan</div>
+                <div class="palette-item" style="background: #FF69B4; color: #000;">Pink</div>
+                <div class="palette-item" style="background: #00FF00; color: #000;">Matrix Green</div>
+                <div class="palette-item" style="background: #FFFFFF; color: #000;">White</div>
+                <div class="palette-item" style="background: #9D00FF; color: #fff;">Purple</div>
+                <div class="palette-item" style="background: #FF6600; color: #000;">Orange</div>
+                <div class="palette-item" style="background: #0066FF; color: #fff;">Blue</div>
+                <div class="palette-item" style="background: #FF0000; color: #fff;">Red</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" style="background: var(--bg-dark);">
+        <div class="container">
+            <h2>🔤 Character Sets</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Standard</h3>
+                    <p style="font-family: monospace;"> .:-=+*#%@</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Binary</h3>
+                    <p style="font-family: monospace;">01</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Dots</h3>
+                    <p style="font-family: monospace;">⠁⠂⠄⠆⠇...</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Blocks</h3>
+                    <p style="font-family: monospace;">▤▥▦▧▨▩...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>ASCII Art Studio - Open Source Project</p>
+            <p>
+                <a href="https://github.com/HiTechTN/ascii_art_studio">GitHub</a> | 
+                <a href="https://github.com/HiTechTN/ascii_art_studio/wiki">Wiki</a> | 
+                <a href="https://github.com/HiTechTN/ascii_art_studio/releases">Releases</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.85rem;">
+                Built with ❤️ using Flutter
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
