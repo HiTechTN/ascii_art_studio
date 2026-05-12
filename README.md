@@ -8,18 +8,56 @@ A cross-platform application to convert images to ASCII art and generate stylize
 
 ## ⭐ Try It Now
 
-### Web Demo
-To enable the web demo:
-1. Go to **Settings → Pages** in the repository
-2. Under "Build and deployment", select **Deploy from a branch**
-3. Choose `master` branch and `/docs` folder
-4. Click Save
+### 🌐 Live Demo
+**[Visit the Landing Page →](https://hitechtn.github.io/ascii_art_studio/)**
 
-Once enabled, the demo will be available at:
-`https://hitechtn.github.io/ascii_art_studio/`
+### 📱 App Preview
+```
+┌─────────────────────────────────────────────────────────────┐
+│  ASCII ART STUDIO                                           │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   🖼️ Image → ASCII     📝 Text Generator    📁 Gallery    │
+│                                                             │
+│   ┌─────────┐                                               │
+│   │  IMAGE  │  ═══════════════════════════════════════    │
+│   │ PREVIEW │  .--.     .--.     .--.     .--.     .--.    │
+│   └─────────┘  |  |     |  |     |  |     |  |     |  |   │
+│                '--'     '--'     '--'     '--'     '--'    │
+│                                                             │
+│   Width: ═══════●═══════ 100                               │
+│   Chars: [Standard ▾]  Color: [Neon Green ▾]              │
+│                                                             │
+│   [Pick Image]  [Invert]  [Settings]                       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 
-### Quick Demo (Copy/Paste)
-Open [`docs/index.html`](docs/index.html) directly in your browser to see the landing page preview.
+┌─────────────────────────────────────────────────────────────┐
+│  TEXT TO ASCII                                              │
+├─────────────────────────────────────────────────────────────┤
+│   Enter text: [ Hello World                      ]          │
+│                                                             │
+│   Font: [Block ▾]  Color: [Cyan ▾]                          │
+│                                                             │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │   HHH   EEEE LL   LL  OOO                            │   │
+│   │   HHH   EE   LL   LL O   O                           │   │
+│   │   HHHH  EEEE LL   LL O   O                           │   │
+│   │   HHHH  EE   LL   LL O   O                           │   │
+│   │   HHH   EEEE LLLL LLL OOO                            │   │
+│   └─────────────────────────────────────────────────────┘   │
+│                                                             │
+│   [Generate]  [Copy]  [Save]                               │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### ⭐ Key Features Demo
+| Feature | Result |
+|---------|--------|
+| Image → ASCII | 🖼️ → ░▒▓█ |
+| 10 Colors | 🟢🟡🔵🟣🟠 |
+| 7 Fonts | Block, Banner, Big... |
+| Export | TXT, HTML (colored) |
 
 ## ✨ Features
 
