@@ -8,7 +8,18 @@ A cross-platform application to convert images to ASCII art and generate stylize
 
 ## ⭐ Try It Now
 
-**Test the web version:** [ASCII Art Studio Web](https://hitechtn.github.io/ascii_art_studio/)
+### Web Demo
+To enable the web demo:
+1. Go to **Settings → Pages** in the repository
+2. Under "Build and deployment", select **Deploy from a branch**
+3. Choose `master` branch and `/docs` folder
+4. Click Save
+
+Once enabled, the demo will be available at:
+`https://hitechtn.github.io/ascii_art_studio/`
+
+### Quick Demo (Copy/Paste)
+Open [`docs/index.html`](docs/index.html) directly in your browser to see the landing page preview.
 
 ## ✨ Features
 
